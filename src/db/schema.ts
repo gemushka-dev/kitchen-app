@@ -84,9 +84,3 @@ export const recipeIngredientsRelations = relations(
 export const ingredientsRelations = relations(ingredients, ({ many }) => ({
   recipeIngredients: many(recipeIngredients),
 }));
-
-const query = `
-    SELECT * FROM recipes_ingredients
-    INNER JOIN recipes USING(recipe_id)
-    WHERE recipes.recipe_id = 2
-`;
