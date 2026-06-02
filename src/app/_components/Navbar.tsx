@@ -9,14 +9,14 @@ export function NavBar({ isLogged }: { isLogged: boolean }) {
         {isLogged
           ? NavItemsAuth.map((el) => {
               return (
-                <li className="list__item">
+                <li className="list__item" key={el.href}>
                   <Link href={el.href}>{el.label}</Link>
                 </li>
               );
             })
           : NavItems.map((el) => {
               return (
-                <li className="list__item">
+                <li className="list__item" key={el.href}>
                   <Link href={el.href}>{el.label}</Link>
                 </li>
               );
