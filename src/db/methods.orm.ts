@@ -14,6 +14,12 @@ export function getUserById(userId: number) {
   });
 }
 
+export function getUserByEmail(email: string) {
+  return db.query.users.findFirst({
+    where: (users, { eq }) => eq(users.email, email),
+  });
+}
+
 export function createUser(user: UserDTOType) {
   return db.insert(users).values(user).returning();
 }
