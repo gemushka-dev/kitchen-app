@@ -1,0 +1,120 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 4rem 2rem;
+  gap: 1rem;
+}
+.info__title {
+  color: #333;
+  font-size: 2.7rem;
+  text-align: center;
+}
+.info__text {
+  color: #888;
+  text-align: center;
+}
+.info__container {
+  align-self: center;
+  display: flex;
+  gap: 1.5rem;
+}
+.recipe__btn,
+.register__btn {
+  padding: 0.8rem 1.8rem;
+  border-radius: 1rem;
+  display: inline-block;
+  max-width: 10rem;
+}
+.recipe__btn {
+  background: #ea580c;
+  color: white;
+  transition: all 0.4s ease-out;
+}
+.recipe__btn:hover {
+  background: #c2410c;
+  transform: translateY(-1px);
+}
+.register__btn {
+  color: #ea580c;
+  border: 2px solid #ea580c;
+  transition: all 0.4s ease-out;
+}
+.register__btn:hover {
+  background: rgba(234, 88, 12, 0.05);
+  transform: translateY(-1px);
+}
+
+.recipes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 2rem;
+  width: 100%;
+}
+.recipe__card {
+  display: flex;
+  flex-direction: column;
+  background: #fbf8f4;
+  border-radius: 2rem;
+  flex: 0 1 calc(33.333% - 1rem);
+  overflow: hidden;
+  transition: all 0.4s ease-out;
+}
+.recipe__card:hover {
+  transform: translateY(-4px);
+}
+.recipe__image-wrapper {
+  position: relative;
+  height: 250px;
+  width: 100%;
+  overflow: hidden;
+}
+.recipe__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.recipe__category {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.75rem;
+  background: #fbf8f4;
+  border-radius: 2rem;
+  color: #333;
+}
+.recipe__content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+.recipe__title {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
+}
+.recipe__description {
+  font-size: 0.8rem;
+  color: #888;
+  padding-bottom: 0.5rem;
+}
+.recipe__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
+.recipe__time {
+  color: #333;
+  font-weight: 600;
+}
+.recipe__link {
+  color: #ea580c;
+}
+
+@media screen and (max-width: 900px) {
+  .recipes {
+    flex-direction: column;
+  }
+}
