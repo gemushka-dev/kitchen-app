@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useRef } from "react";
 import { POST } from "@/src/utils/post.fetch";
 
+import "@/src/app/_styles/register&login.css";
+
 export default function Register() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -51,7 +53,7 @@ export default function Register() {
             ref={usernameRef}
             required
           />
-          <button className="form__button">Register</button>
+          <button className="form__btn">Register</button>
         </form>
         <div className="register__info">
           <span className="info__text">
