@@ -5,7 +5,9 @@ import "../_styles/navbar.css";
 export function NavBar({ isLogged }: { isLogged: boolean }) {
   return (
     <nav className="nav">
-      <p className="nav__logo">Povarenok</p>
+      <Link href="/" className="nav__logo">
+        Povarenok
+      </Link>
       <ul className="nav__list">
         {isLogged
           ? NavItemsAuth.map((el) => {
