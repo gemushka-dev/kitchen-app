@@ -4,6 +4,8 @@ import { Recipe } from "@/src/types/RecipeType";
 import { GET } from "@/src/utils/get.fetch";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import "../_styles/homepage.css";
+import "../_styles/recipes.css";
 
 export default function RecipesPage() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -67,11 +69,11 @@ export default function RecipesPage() {
         })}
       </section>
 
-      <div className="pagination-controls">
+      <div className="pagination__controls">
         <button
           onClick={handlePrev}
           disabled={offset === 0}
-          className="control-btn"
+          className="control__btn"
         >
           &larr; Previous {LIMIT}
         </button>
@@ -79,7 +81,7 @@ export default function RecipesPage() {
         <button
           onClick={handleNext}
           disabled={recipes.length < LIMIT}
-          className="control-btn"
+          className="control__btn"
         >
           Next {LIMIT} &rarr;
         </button>

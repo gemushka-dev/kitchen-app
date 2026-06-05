@@ -1,0 +1,24 @@
+.pagination__controls {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.control__btn {
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+  background: #ea580c;
+  color: white;
+  border-radius: 1rem;
+  font-size: 1rem;
+  max-width: 10rem;
+  width: 100%;
+  text-align: center;
+  transition: all 0.4s ease-out;
+}
+
+.control__btn:hover {
+  transform: translateY(-4px);
+}
