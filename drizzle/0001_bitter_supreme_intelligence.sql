@@ -1,0 +1,2 @@
+ALTER TABLE "ingredients" ADD COLUMN "author_id" integer;--> statement-breakpoint
+ALTER TABLE "ingredients" ADD CONSTRAINT "ingredients_author_id_users_user_id_fk" FOREIGN KEY ("author_id") REFERENCES "public"."users"("user_id") ON DELETE cascade ON UPDATE no action;
