@@ -1,4 +1,4 @@
-import { desc } from "drizzle-orm";
+import { desc, eq, or } from "drizzle-orm";
 import { UserDTOType } from "../types/UserDTOType";
 import { db } from "./index";
 import { ingredients, recipeIngredients, recipes, users } from "./schema";
@@ -53,7 +53,8 @@ export function createRecipe(recipe: RecipeDTOType) {
 
 export function getIngredientsByUserId(userId: number) {
   return db.query.ingredients.findMany({
-    where: (ingredients, { eq }) => eq(ingredients.authorId, userId),
+    where: (ingredients) =>
+      or(eq(ingredients.authorId, userId), eq(ingredients.authorId, 1)),
   });
 }
 
