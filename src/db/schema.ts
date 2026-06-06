@@ -37,6 +37,9 @@ export const recipes = pgTable("recipes", {
 export const ingredients = pgTable("ingredients", {
   ingredientId: serial("ingredient_id").primaryKey(),
   name: varchar("name", { length: 128 }).unique().notNull(),
+  authorId: integer("author_id").references(() => users.userId, {
+    onDelete: "cascade",
+  }),
 });
 
 export const recipeIngredients = pgTable(
