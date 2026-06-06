@@ -51,8 +51,14 @@ export function createRecipe(recipe: RecipeDTOType) {
   return db.insert(recipes).values(recipe).returning();
 }
 
-export function createIngredient(ingredient: IngredientDTOType) {
-  return db.insert(ingredients).values(ingredient).returning();
+export function getIngredientsByUserId(userId: number) {
+  return db.query.ingredients.findMany({
+    where: (ingredients, { eq }) => eq(ingredients.authorId, userId),
+  });
+}
+
+export function createIngredient(name: string, authorId: number) {
+  return db.insert(ingredients).values({ name, authorId }).returning();
 }
 
 export function createRecipeIngredients(items: RecipeIngredientDTO[]) {
