@@ -5,6 +5,12 @@ export type RecipeIngredientDTO = {
   unit: string;
 };
 
+export type RecipeIngredientMDTO = {
+  ingredientId: number;
+  amount: number;
+  unit: string;
+};
+
 export type IngredientDTOType = {
   name: string;
 };
