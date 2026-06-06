@@ -6,6 +6,8 @@ import { RecipeIngredientMDTO } from "@/src/types/IngredientsDTOType";
 import { useState, useEffect, useRef } from "react";
 import { FullRecipeType } from "@/src/types/RecipeType";
 
+import "../_styles/create.css";
+
 export default function CreatePage() {
   const ingredientRef = useRef<HTMLInputElement>(null);
 
@@ -109,54 +111,57 @@ export default function CreatePage() {
 
   return (
     <>
-      <section className="ingredient">
-        <form className="ingredient__form" onSubmit={handleSubmitIngredient}>
+      <section className="recipe" onSubmit={handleCreateRecipe}>
+        <h3>Recipe Details</h3>
+        <form className="recipe__form">
           <input
             type="text"
+            placeholder="e.g Salads"
             className="form__input"
-            placeholder="e.g Butter"
-            ref={ingredientRef}
+            ref={recipeGroupRef}
           />
-          <button className="button__plus">+</button>
-        </form>
-      </section>
-
-      <section className="recipe" onSubmit={handleCreateRecipe}>
-        <form className="recipe__form">
-          <div className="recipe__general">
-            <input
-              type="text"
-              placeholder="e.g Salads"
-              className="form__input"
-              ref={recipeGroupRef}
-            />
-            <input
-              type="text"
-              placeholder="e.g Caesar"
-              className="form__input"
-              ref={recipeNameRef}
-            />
-            <textarea
-              placeholder="1.Add sugar...."
-              className="form__placeholder"
-              ref={recipeInfoRef}
-            ></textarea>
-            <input
-              type="text"
-              placeholder="https://image/salad"
-              className="form__input"
-              ref={recipeUriRef}
-            />
-            <input type="text" placeholder="e.g 20 mins" ref={cookingTimeRef} />
-          </div>
+          <input
+            type="text"
+            placeholder="e.g Caesar"
+            className="form__input"
+            ref={recipeNameRef}
+          />
+          <textarea
+            placeholder="1.Add sugar...."
+            className="form__textarea"
+            ref={recipeInfoRef}
+          ></textarea>
+          <input
+            type="text"
+            placeholder="https://image/salad"
+            className="form__input"
+            ref={recipeUriRef}
+          />
+          <input
+            type="text"
+            placeholder="e.g 20 mins"
+            className="form__input"
+            ref={cookingTimeRef}
+          />
 
           <button type="submit" className="form__btn">
             Save recipe
           </button>
         </form>
-        <hr />
+
         <h3>Ingredients</h3>
-        <form onSubmit={handleAddIngredient}>
+        <section className="ingredient">
+          <form className="ingredient__form" onSubmit={handleSubmitIngredient}>
+            <input
+              type="text"
+              className="form__input"
+              placeholder="e.g Butter"
+              ref={ingredientRef}
+            />
+            <button className="button__plus">+</button>
+          </form>
+        </section>
+        <form onSubmit={handleAddIngredient} className="ingredient__form-add">
           <select ref={ingredientSelectRef}>
             <option value="">-- Choose ingredient --</option>
             {Array.isArray(dbIngredients.data) &&
@@ -182,7 +187,7 @@ export default function CreatePage() {
             <option value="tbsp">tbsp</option>
             <option value="slice">slice</option>
           </select>
-          <button type="submit" className="form__btn">
+          <button type="submit" className="form__btn-add">
             Add to list
           </button>
         </form>

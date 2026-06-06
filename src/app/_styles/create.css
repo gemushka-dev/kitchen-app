@@ -1,0 +1,86 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+section {
+  max-width: 900px;
+  width: 100%;
+}
+.recipe__form input,
+.recipe__form textarea,
+select,
+input {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: inherit;
+}
+
+.form__input,
+.form__textarea,
+select {
+  border: 1px solid #d1d5db;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background-color: #fff;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  outline: none;
+}
+
+.form__textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.5;
+}
+.form__btn,
+.button__plus,
+.form__btn-add {
+  padding: 1rem;
+  color: white;
+  border: none;
+  cursor: pointer;
+  background: #ea580c;
+  border-radius: 1rem;
+}
+
+.ingredient {
+  display: flex;
+  padding: 1rem;
+}
+.ingredient__form {
+  display: flex;
+  gap: 1rem;
+  justify-self: left;
+}
+.recipe__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+h3 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+}
+.ingredient__form-add {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  flex-flow: row wrap;
+}
+.form__btn-add {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .ingredient__form-add {
+    display: flex;
+    flex-direction: column;
+  }
+}
