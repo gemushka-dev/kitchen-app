@@ -15,6 +15,13 @@
       "when": 1780726628521,
       "tag": "0001_bitter_supreme_intelligence",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1780819257286,
+      "tag": "0002_round_talkback",
+      "breakpoints": true
     }
   ]
 }
