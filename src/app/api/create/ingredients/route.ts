@@ -3,6 +3,7 @@ import { createIngredient, getIngredientsByUserId } from "@/src/db/methods.orm";
 import { IngredientDTOType } from "@/src/types/IngredientsDTOType";
 import { cookies } from "next/headers";
 import { verifyJWT } from "@/src/utils/auth";
+import { revalidatePath } from "next/cache";
 
 export async function GET(request: NextRequest) {
   try {
@@ -40,6 +41,7 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     await createIngredient(name, user.id);
+    revalidatePath("/create");
     return NextResponse.json(
       { message: "Ingredient created" },
       { status: 200 },
