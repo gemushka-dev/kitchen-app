@@ -5,8 +5,14 @@ import { POST } from "@/src/utils/post.fetch";
 import { RecipeIngredientMDTO } from "@/src/types/IngredientsDTOType";
 import { useState, useEffect, useRef } from "react";
 import { FullRecipeType } from "@/src/types/RecipeType";
+import { IngredientType } from "@/src/types/IngredientType";
 
 import "../_styles/create.css";
+import {
+  createHandleAddIngredient,
+  createHandleCreateRecipe,
+  createHandleSubmitIngredient,
+} from "@/src/utils/create.handlers";
 
 export default function CreatePage() {
   const ingredientRef = useRef<HTMLInputElement>(null);
@@ -28,7 +34,9 @@ export default function CreatePage() {
     { ingredientId: number; amount: number; unit: string; name: string }[]
   >([]);
 
-  const [dbIngredients, setDbIngredients] = useState({ data: [] });
+  const [dbIngredients, setDbIngredients] = useState<{
+    data: IngredientType[];
+  }>({ data: [] });
 
   const fetchIngredients = async () => {
     try {
@@ -39,75 +47,26 @@ export default function CreatePage() {
   useEffect(() => {
     fetchIngredients();
   }, []);
-  async function handleSubmitIngredient(e: React.FormEvent) {
-    try {
-      e.preventDefault();
-      await POST("api/create/ingredients", {
-        name: ingredientRef.current?.value,
-      });
-      ingredientRef.current!.value = "";
-    } catch (e) {}
-  }
 
-  function handleAddIngredient(e: React.FormEvent) {
-    e.preventDefault();
-    const selectedIdStr = ingredientSelectRef.current?.value;
-    const amountVal = amountInputRef.current?.value;
-    const unitVal = unitSelectRef.current?.value || "g";
-    if (!selectedIdStr || !amountVal?.trim()) {
-      alert("Please select an ingredient and enter amount!");
-      return;
-    }
-    const ingredientId = Number(selectedIdStr);
-    const foundIngredient: any = dbIngredients.data?.find(
-      (e: any) => e.ingredientId === ingredientId,
-    );
-    const ingredientName = foundIngredient ? foundIngredient.name : "Unknown";
-    setLocalIngredients([
-      ...localIngredients,
-      {
-        ingredientId: ingredientId,
-        amount: Number(amountVal.trim()),
-        unit: unitVal,
-      },
-    ]);
-    setUserIngredients([
-      ...userIngredients,
-      {
-        ingredientId: ingredientId,
-        amount: Number(amountVal.trim()),
-        unit: unitVal,
-        name: ingredientName,
-      },
-    ]);
-
-    if (ingredientSelectRef.current) ingredientSelectRef.current.value = "";
-    if (amountInputRef.current) amountInputRef.current.value = "";
-    if (unitSelectRef.current) unitSelectRef.current.value = "g";
-  }
-
-  async function handleCreateRecipe(e: React.FormEvent) {
-    e.preventDefault();
-    if (!recipeGroupRef.current?.value) return;
-    if (!recipeNameRef.current?.value) return;
-    if (!recipeInfoRef.current?.value) return;
-    if (!recipeUriRef.current?.value) return;
-    if (!cookingTimeRef.current?.value) return;
-    const body: FullRecipeType = {
-      recipe: {
-        recipeGroup: recipeGroupRef.current?.value,
-        recipeName: recipeNameRef.current?.value,
-        recipeInfo: recipeInfoRef.current?.value,
-        imageUrI: recipeUriRef.current?.value,
-        cookingTime: Number(cookingTimeRef.current?.value),
-        authorId: 0,
-      },
-      ingredients: localIngredients,
-    };
-    try {
-      await POST("api/create/recipe", body);
-    } catch (e) {}
-  }
+  const handleCreateRecipe = createHandleCreateRecipe({
+    recipeGroupRef,
+    recipeNameRef,
+    recipeInfoRef,
+    recipeUriRef,
+    cookingTimeRef,
+    localIngredients,
+  });
+  const handleSubmitIngredient = createHandleSubmitIngredient(ingredientRef);
+  const handleAddIngredient = createHandleAddIngredient({
+    ingredientSelectRef,
+    amountInputRef,
+    unitSelectRef,
+    dbIngredients,
+    setLocalIngredients,
+    localIngredients,
+    setUserIngredients,
+    userIngredients,
+  });
 
   return (
     <>
